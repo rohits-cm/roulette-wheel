@@ -10,7 +10,7 @@ $(document).ready(function () {
 
   //rotate the wheel
   function rotateWheel() {
-    rotationAngle += 10 + Math.random() * 5;
+    rotationAngle += 10;
     $('.roulette-wheel').css('transform', 'rotate(' + rotationAngle + 'deg)');
   }
 
