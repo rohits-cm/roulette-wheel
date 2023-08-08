@@ -10,7 +10,7 @@ $(document).ready(function () {
 
   //rotate the wheel
   function rotateWheel() {
-    rotationAngle += 10;
+    rotationAngle += 10 ;
     $('.roulette-wheel').css('transform', 'rotate(' + rotationAngle + 'deg)');
   }
 
@@ -21,6 +21,7 @@ $(document).ready(function () {
       $('#spinBtn').text('Stop');
       resultDisplayed = false;
       
+      // spin randomization
       var randomDurationFactor = 0.9 + Math.random() * 0.2;
       var adjustedSpinDuration = spinDuration * randomDurationFactor;
 
@@ -34,7 +35,7 @@ $(document).ready(function () {
     }
   }
 
-  //stop spinning the wheel
+  //stop the wheel
   function stopSpinning() {
     clearInterval(intervalId);
     spinning = false;
@@ -58,7 +59,6 @@ $(document).ready(function () {
       var resultNumber = numbers[resultIndex];
       console.log('The wheel stopped at ' + currentAngle + ' degrees. Result: ' + resultNumber);
       $('#resultDiv').append(resultNumber + '<br>');
-      // $('#resultDiv').html('<strong>Result:</strong> ' + resultNumber);
       resultDisplayed = true;
     }
   }
