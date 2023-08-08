@@ -10,7 +10,7 @@ $(document).ready(function () {
 
   //rotate the wheel
   function rotateWheel() {
-    rotationAngle += 10;
+    rotationAngle += 10 + Math.random() * 5;
     $('.roulette-wheel').css('transform', 'rotate(' + rotationAngle + 'deg)');
   }
 
@@ -19,14 +19,18 @@ $(document).ready(function () {
     if (!spinning) {
       spinning = true;
       $('#spinBtn').text('Stop');
-      resultDisplayed = false; 
+      resultDisplayed = false;
+      
+      var randomDurationFactor = 0.9 + Math.random() * 0.2;
+      var adjustedSpinDuration = spinDuration * randomDurationFactor;
+
       intervalId = setInterval(function () {
         rotateWheel();
       }, 5);
 
       setTimeout(function () {
         stopSpinning();
-      }, spinDuration); 
+      }, adjustedSpinDuration);
     }
   }
 
@@ -36,7 +40,7 @@ $(document).ready(function () {
     spinning = false;
     $('#spinBtn').text('Start');
 
-    if (!resultDisplayed) { 
+    if (!resultDisplayed) {
       var currentAngle = rotationAngle % 360;
       var resultIndex = -1;
 
@@ -54,13 +58,14 @@ $(document).ready(function () {
       var resultNumber = numbers[resultIndex];
       console.log('The wheel stopped at ' + currentAngle + ' degrees. Result: ' + resultNumber);
       $('#resultDiv').append(resultNumber + '<br>');
+      // $('#resultDiv').html('<strong>Result:</strong> ' + resultNumber);
       resultDisplayed = true;
     }
   }
 
   $('#spinBtn').on('click', function () {
     if (spinning) {
-      clearInterval(intervalId); 
+      clearInterval(intervalId);
       stopSpinning();
     } else {
       spinWheel();
